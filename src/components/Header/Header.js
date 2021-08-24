@@ -4,13 +4,13 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import categories from '../../data/category';
 
-const Header = ({ word, setWord, language, setLanguage }) => {
+const Header = ({ word, setWord, language, setLanguage, isDarkMode }) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: '#fff',
+        main: isDarkMode ? '#fff' : '#282c34',
       },
-      type: 'dark',
+      type: isDarkMode ? 'dark' : 'light',
     },
   });
 
