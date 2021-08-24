@@ -3,9 +3,10 @@ import axios from 'axios';
 import './App.css';
 import { Container } from '@material-ui/core';
 import Header from './components/Header/Header';
+import Definitions from './components/Definitions/Definitions';
 
 function App() {
-  const [word, setWord] = useState('hello');
+  const [word, setWord] = useState('');
   const [language, setLanguage] = useState('en');
   const [meanings, setMeanings] = useState([]);
 
@@ -20,12 +21,10 @@ function App() {
   }
 
   console.log(meanings);
-  console.log(word);
-  console.log(language);
 
   useEffect(() => {
     dictionaryApi();
-  }, [])
+  }, [word, language])
 
   return (
     <div className="App" style={{ height: '100vh', backgroundColor: '#282c34', color: 'white' }}>
@@ -39,6 +38,13 @@ function App() {
           language={language}
           setLanguage={setLanguage}
         />
+        {meanings && (
+          <Definitions
+            word={word}
+            meanings={meanings}
+            language={language}
+          />
+        )}
       </Container>
     </div>
   );

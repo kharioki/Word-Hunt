@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Header.css';
 import { TextField, MenuItem } from '@material-ui/core'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -15,14 +14,13 @@ const Header = ({ word, setWord, language, setLanguage }) => {
     },
   });
 
-  const handleChange = (e) => {
-    console.log('lang', e.target.value);
-    setLanguage(e.target.value);
+  const handleChangeLanguage = (lang) => {
+    setLanguage(lang);
+    setWord('');
   };
 
-  const onChangeWord = (e) => {
-    console.log('word', e.target.value);
-    setWord(e.target.value);
+  const onChangeWord = (val) => {
+    setWord(val);
   };
 
   return (
@@ -34,14 +32,14 @@ const Header = ({ word, setWord, language, setLanguage }) => {
             className="search"
             label="Search word"
             value={word}
-            onChange={onChangeWord}
+            onChange={e => onChangeWord(e.target.value)}
           />
           <TextField
             className="select"
             select
             label="Select Language"
             value={language}
-            onChange={handleChange}
+            onChange={e => handleChangeLanguage(e.target.value)}
             helperText="Please select a language"
           >
             {categories.map((option) => (
